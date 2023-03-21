@@ -302,7 +302,7 @@ def main():
 
                         # here need insert all logic of code.
                         # set proxy and user_agent
-                        # and ignore pycache
+                        # and ignore pycache ----> Prepare it for linux... and Win
 
     window.close()
 
