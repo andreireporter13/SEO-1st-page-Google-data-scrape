@@ -300,6 +300,9 @@ def main():
                         sleep(0.01)
                         sg.OneLineProgressMeter(f'Scrape: |{keyword}|', i+1, 1000, 'ScraperMeter')
 
+                        # here need insert all logic of code.
+                        # set proxy and user_agent
+
     window.close()
 
 
