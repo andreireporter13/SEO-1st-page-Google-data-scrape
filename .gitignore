@@ -1,5 +1,10 @@
 /venv_SEO_automation
 /Firefox_Driver
+/browser_settings/__pycache__
+/click_cookies/__pycache__
+/Google_Search/__pycache__
+/GUI_for_App/__pycache__
+/save_list_to_csv/__pycache__
 project.txt
 geckodriver.log
 

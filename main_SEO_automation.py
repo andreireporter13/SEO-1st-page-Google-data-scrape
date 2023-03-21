@@ -298,7 +298,7 @@ def main():
                                 sg.popup('Scraper stopped.')
                                 return
                         sleep(0.01)
-                        sg.OneLineProgressMeter('One Line Meter Example', i+1, 1000, 'mymeter')
+                        sg.OneLineProgressMeter(f'Scrape: |{keyword}|', i+1, 1000, 'ScraperMeter')
 
     window.close()
 
