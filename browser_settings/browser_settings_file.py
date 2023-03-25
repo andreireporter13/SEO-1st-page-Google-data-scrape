@@ -33,7 +33,7 @@ def configured_driver(proxy_data: str, user_agent: str):
     options.set_preference("general.useragent.override", user_agent) 
 
     ### OPTIONS HEADLESS
-    #options.add_argument('-headless')
+    options.add_argument('-headless')
 
     if '127.0.0.1' in proxy_data or 'localhost' in proxy_data:
         # here driver work without proxy...

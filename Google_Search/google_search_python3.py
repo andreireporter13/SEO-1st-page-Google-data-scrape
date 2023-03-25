@@ -16,7 +16,7 @@ class GoogleSearch:
     This script can make simple, with functions... but I want to learn OOP.
     """
 
-    def __init__(self, keyword_search: str, num_result=5, lang='ro'):
+    def __init__(self, keyword_search: str, num_result=10, lang='ro'):
         self.keyword_search = keyword_search
         self.lang = lang
         self.num_result = num_result

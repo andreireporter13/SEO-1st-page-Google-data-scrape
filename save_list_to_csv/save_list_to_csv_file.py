@@ -18,6 +18,6 @@ def save_data_to_csv_files(keyword, data_for_csv: list) -> None:
     
     headers = ['Site', 'h1', 'h2_list', 'h3_list', 'Meta_content', 'Meta_description']
     df = pd.DataFrame(data_for_csv, columns=headers)
-    df.to_csv(f"{'-'.join(keyword.split(' ')}.csv", encoding="utf8")
+    df.to_csv(f"{'-'.join(keyword.split(' '))}.csv", encoding="utf8")
     
     return f"Done with keyword {keyword}"

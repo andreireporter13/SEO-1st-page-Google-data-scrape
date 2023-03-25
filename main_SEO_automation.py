@@ -53,81 +53,7 @@ def return_links_from_google(seo_keyword: str) -> list:
     return first_page_links.search_by_keyword()
 #
 #
-def scrap_data_from_links(driver, list_with_links: list) -> list:
-    """ 
-    This function use Selenium Webdriver and BS4 for scraping data from
-    web pages.
-    """ 
-    
-    data_from_google_links = []
-    for link in list_with_links: 
-
-        # all h2 
-        h2_list = []
-
-        # all h3
-        h3_list = []
-
-        #
-        driver.get(link)
-        driver.implicitly_wait(10)  # wait for totaly load page
-
-        ############# DO CLICK ON COOKIES BUTTONS WITH MAIN IMPORTED MODULE ##################
-        sleep(1)
-        search_buttons_by_regex_and_click_cookies(driver)
-        sleep(1)
-        ######################################################################################
-
-        # make soup object
-        soup_data = BeautifulSoup(driver.page_source, 'lxml')
-
-        # time to extrat data from webpage
-        Site = link
-
-        try: 
-            H1 = soup_data.title.text.strip()
-        except: 
-            H1 = '-'
-        
-        try:
-
-            H2 = soup_data.find_all("h2")
-            if H2: 
-                for data in H2:
-                    h2_list.append(data.text.strip())
-        except: 
-            H2 = '-'
-        
-        try:
-            H3 = soup_data.find_all("h3")
-            if H3: 
-                for data in H3:
-                    h3_list.append(data.text.strip())
-        except: 
-            H3 = '-'
-
-        try: 
-            Meta_content = soup_data.find('meta', attrs={'name': 'description'})['content']
-        except:
-            Meta_content = '-'
-        
-        try: 
-            Meta_description = soup_data.find('meta', attrs={'name': 'content'})['content']
-        except:
-            Meta_description = '-'
-
-        data_from_google_links.append([Site, H1, h2_list, h3_list, Meta_content, Meta_description])
-
-        # sleep, for better work
-        sleep(randint(2, 4))
-
-    print(data_from_google_links)
-
-    # return data, and prepare it to save in CSV file
-    #
-    return data_from_google_links
-
-
+#
 def main():
     """ 
     This func() store all function about this project.
@@ -294,19 +220,22 @@ def main():
 
                 # set driver not in for loop
                 driver = configured_driver(proxy_settings, user_agent_settings)
-                
+
                 try:
                     # for loop for this session
                     for keyword in keywords:
 
-                        # scrap data from links ---> 
-                        scraped_data = scrap_data_from_links(driver, return_links_from_google(keyword))
+                        # this list is for one keyword data
+                        data_from_keyword = []
 
-                        # save data to csv
-                        save_data_to_csv_files(keyword, scraped_data)
+                        # return links from Google
+                        links_from_google = return_links_from_google(keyword)
+                        
+                        i = 0
+                        # for loop for links scraped from Google
+                        for data_link in links_from_google:
 
-                        # show progress
-                        for i in range(100):
+                            # if press cancel
                             event, values = window.read(timeout=10)
                             if event == sg.WIN_CLOSED:
                                 break
@@ -314,10 +243,73 @@ def main():
                                 if sg.popup_ok_cancel('Do you really want to stop the scraper?') == 'OK':
                                     sg.popup('Scraper stopped.')
                                     return
-                            sleep(0.01)
-                            sg.OneLineProgressMeter(f'Scraping {keyword}', i+1, 100, 'scraper_progress_bar')
-                except: 
+
+                            # load progress bar
+                            sleep(0.1)
+                            sg.OneLineProgressMeter(f'Scraping {keyword}', (i+1) * 10, 100, 'scraper_progress_bar')
+                            i += 1
+
+                            ####################################### TRY DOWNLOAD DATA ##################################
+                            driver.get(data_link)
+                            driver.implicitly_wait(10)  # wait for totaly load page
+
+                            ############# DO CLICK ON COOKIES BUTTONS WITH MAIN IMPORTED MODULE ##################
+                            sleep(1)
+                            search_buttons_by_regex_and_click_cookies(driver)
+                            sleep(1)
+                            ######################################################################################
+
+                            # make soup object
+                            soup_data = BeautifulSoup(driver.page_source, 'lxml')
+
+                            # time to extrat data from webpage
+                            Site = data_link
+
+                            try:
+                                H1 = soup_data.title.text.strip()
+                            except: 
+                                H1 = '-'
+                            
+                            try:
+                                h2_list = []
+                                H2 = soup_data.find_all("h2")
+                                if H2: 
+                                    for data in H2:
+                                        h2_list.append(data.text.strip())
+                            except: 
+                                H2 = '-'
+                            
+                            try:
+                                h3_list = []
+                                H3 = soup_data.find_all("h3")
+                                if H3: 
+                                    for data in H3:
+                                        h3_list.append(data.text.strip())
+                            except: 
+                                H3 = '-'
+
+                            try: 
+                                Meta_content = soup_data.find('meta', attrs={'name': 'description'})['content']
+                            except:
+                                Meta_content = '-'
+                            
+                            try: 
+                                Meta_description = soup_data.find('meta', attrs={'name': 'content'})['content']
+                            except:
+                                Meta_description = '-'
+
+                            ################################# END THIS BLOCK ##############################################
+
+                            ### APPEND DATA
+                            data_from_keyword.append([Site, H1, h2_list, h3_list, Meta_content, Meta_description])
+                        
+                        # save data to csv
+                        save_data_to_csv_files(keyword, data_from_keyword)
+                        sleep(0.5)
+
+                except:
                     pass
+
                 finally: 
                     sleep(3)
                     driver.close()
