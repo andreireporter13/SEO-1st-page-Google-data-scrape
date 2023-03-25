@@ -36,7 +36,7 @@ The scraped data includes the website's URL, H1, H2, and H3 tags, meta content, 
 5. Run the script:
 
    ```
-   python main.py
+   main_SEO_automation.py
    ```
 
 ## :computer: Usage
