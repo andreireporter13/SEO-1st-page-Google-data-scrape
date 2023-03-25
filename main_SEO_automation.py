@@ -136,8 +136,8 @@ def main():
     window = sg.Window("Free scraping SEO app", layout, size=(1150, 600))
 
     ########################### DEFAULT VALUES #########################################
-    default_proxy = None
-    default_user_agent = 'Mozilla/5.0'
+    default_proxy = 'localhost:80'
+    default_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:111.0) Gecko/20100101 Firefox/111.0'
     ####################################################################################
     #
     ########################## VALUES TO STORE DATA ####################################
@@ -291,21 +291,41 @@ def main():
             elif len(keywords) > 3:
                 sg.popup('Please enter no more than 3 keywords.')
             else:
-                for keyword in keywords:
-                    for i in range(1000):
-                        event, values = window.read(timeout=10)
-                        if event == sg.WIN_CLOSED:
-                            break
-                        elif event == 'Cancel':
-                            if sg.popup_ok_cancel('Do you really want to stop the scraper?') == 'OK':
-                                sg.popup('Scraper stopped.')
-                                return
-                        sleep(0.01)
-                        sg.OneLineProgressMeter(f'Scrape: |{keyword}|', i+1, 1000, 'ScraperMeter')
 
-                        # here need insert all logic of code.
-                        # set proxy and user_agent
-                        # and ignore pycache ----> Prepare it for linux... and Win
+                # set driver not in for loop
+                driver = configured_driver(proxy_settings, user_agent_settings)
+                
+                try:
+                    # for loop for this session
+                    for keyword in keywords:
+
+                        # scrap data from links ---> 
+                        scraped_data = scrap_data_from_links(driver, return_links_from_google(keyword))
+
+                        # save data to csv
+                        save_data_to_csv_files(keyword, scraped_data)
+
+                        # show progress
+                        for i in range(100):
+                            event, values = window.read(timeout=10)
+                            if event == sg.WIN_CLOSED:
+                                break
+                            elif event == 'Cancel':
+                                if sg.popup_ok_cancel('Do you really want to stop the scraper?') == 'OK':
+                                    sg.popup('Scraper stopped.')
+                                    return
+                            sleep(0.01)
+                            sg.OneLineProgressMeter(f'Scraping {keyword}', i+1, 100, 'scraper_progress_bar')
+                except: 
+                    pass
+                finally: 
+                    sleep(3)
+                    driver.close()
+                    driver.quit()
+
+                # show message when done
+                sg.popup(f'Scraping for keywords: {", ".join(keywords)} has finished successfully.')
+
 
     window.close()
 
