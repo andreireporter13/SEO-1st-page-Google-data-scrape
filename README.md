@@ -51,7 +51,7 @@ The scraped data includes the website's URL, H1, H2, and H3 tags, meta content, 
 
 This project is licensed under the MIT License.
 
-## :email: Contact
+## :email: Contact 
 
 Feel free to reach out to the authors:
 
