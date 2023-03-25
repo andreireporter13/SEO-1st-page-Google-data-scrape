@@ -58,6 +58,6 @@ Feel free to reach out to the authors:
 - Andrei C. Cojocaru: [LinkedIn](https://www.linkedin.com/in/andrei-cojocaru-985932204/)
 - Baluta Laurentiu Marian: [LinkedIn](https://www.linkedin.com/in/laurentiu-baluta-3153b9217/)
 
-For more information about our work, visit our website: [https://webautomation.ro](https://webautomation.ro)
+For more information about our work, visit our website: [https://webautomation.ro](https://webautomation.ro) and [https://www.laurentiumarian.ro/](https://www.laurentiumarian.ro/)
 
 Special Thanks to: [@tragdate](https://tragdate.ninja/)
