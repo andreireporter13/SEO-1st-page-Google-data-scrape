@@ -55,8 +55,8 @@ This project is licensed under the MIT License.
 
 Feel free to reach out to the authors:
 
-- Andrei C. Cojocaru: [LinkedIn](https://www.linkedin.com/in/andrei-c-cojocaru)
-- Baluta Laurentiu Marian: [LinkedIn](https://www.linkedin.com/in/baluta-laurentiu-marian)
+- Andrei C. Cojocaru: [LinkedIn](https://www.linkedin.com/in/andrei-cojocaru-985932204/)
+- Baluta Laurentiu Marian: [LinkedIn](https://www.linkedin.com/in/laurentiu-baluta-3153b9217/)
 
 For more information about our work, visit our website: [https://webautomation.ro](https://webautomation.ro)
 
