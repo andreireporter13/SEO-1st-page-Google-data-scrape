@@ -6,6 +6,9 @@
 #
 # Author - Andrei C. Cojocaru - number1101
 # website - https://webautomation.ro
+# linkedin - ...
+# email ---
+# facebook group - 
 #
 #
 #
@@ -133,7 +136,7 @@ def main():
     window = sg.Window("Free scraping SEO app", layout, size=(1150, 600))
 
     ########################### DEFAULT VALUES #########################################
-    default_proxy = 'localhost'
+    default_proxy = None
     default_user_agent = 'Mozilla/5.0'
     ####################################################################################
     #
@@ -180,7 +183,7 @@ def main():
             doc_layout = [[sg.Text('Free SEO App', font=('Arial', 20), justification='center')],
                     [sg.HorizontalSeparator()],
                     [sg.Text('Version:', font=('Arial', 12)), sg.Text('1.0', font=('Arial', 12))],
-                    [sg.Text('Author:', font=('Arial', 12)), sg.Text('Andrei C. Cojocaru', font=('Arial', 12))],
+                    [sg.Text('Author:', font=('Arial', 12)), sg.Text('Andrei C. Cojocaru \nBaluta Laurentiu Marian', font=('Arial', 12))],
                     [sg.Text('Description:', font=('Arial', 12)), sg.Text('Open Source Application', font=('Arial', 12))],
                     [sg.HorizontalSeparator()],
                     [sg.Button('OK', size=(10, 1), pad=((200, 0), (20, 20)))]]
