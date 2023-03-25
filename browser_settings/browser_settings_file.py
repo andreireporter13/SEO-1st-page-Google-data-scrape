@@ -13,7 +13,7 @@ from selenium.webdriver.common.proxy import Proxy, ProxyType
 def configured_driver(proxy_data: str, user_agent: str): 
     """ This function configure webdriver! """
 
-    ### PROXY
+    ### set proxy here
     proxy = Proxy({
         'proxyType': ProxyType.MANUAL,
         'httpProxy': f'{proxy_data}',
@@ -29,35 +29,32 @@ def configured_driver(proxy_data: str, user_agent: str):
     options.set_capability('useAutomationExtension', False)
     options.set_capability("excludeSwitches", ["enable-automation"])
 
-    ### proxy here
-    options.proxy = proxy
-
     ### USER AGENT 
     options.set_preference("general.useragent.override", user_agent) 
 
     ### OPTIONS HEADLESS
-    # with this argument, browser work in background
     #options.add_argument('-headless')
 
-    # set path to firefox driver;
-    firefox_service = Service(executable_path="/home/linuxtramp/Documents/Python3_projects/Paunica_SEO_project/Firefox_Driver/geckodriver")
-    driver = webdriver.Firefox(service=firefox_service, options=options)
+    if '127.0.0.1' in proxy_data or 'localhost' in proxy_data:
+        # here driver work without proxy...
+        #...
 
-    return driver
+        # set path to firefox driver;
+        firefox_service = Service(executable_path="/home/linuxtramp/Documents/Python3_projects/Paunica_SEO_project/Firefox_Driver/geckodriver")
+        driver = webdriver.Firefox(service=firefox_service, options=options)
 
+        return driver
 
+    else: 
+        # here driver work with proxy...
+        #...
 
-####################
-driver = configured_driver('localhost:8118', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:111.0) Gecko/20100101 Firefox/111.0')
+        ### proxy here
+        options.proxy = proxy
 
-try: 
-    from time import sleep
-    driver.get('https://www.whatsmyip.org/')
+        # set path to firefox driver;
+        firefox_service = Service(executable_path="/home/linuxtramp/Documents/Python3_projects/Paunica_SEO_project/Firefox_Driver/geckodriver")
+        driver = webdriver.Firefox(service=firefox_service, options=options)
 
-except Exception as ex:
-    print(ex)
+        return driver
 
-finally: 
-    sleep(10)
-    driver.close()
-    driver.quit()
