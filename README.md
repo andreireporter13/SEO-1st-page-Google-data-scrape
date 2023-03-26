@@ -1,6 +1,6 @@
 # SEO-1st-page-Google-data-scrape
 
-[alt text](https://github.com/andreireporter13/SEO-1st-page-Google-data-scrape/blob/SEO-1st-page-Google-data-scrape/GUI_for_App/img/App-photo.png?raw=true "Free SEO analyse app")
+[alt tag](https://github.com/andreireporter13/SEO-1st-page-Google-data-scrape/blob/SEO-1st-page-Google-data-scrape/GUI_for_App/img/App-photo.png)
 
 This project is a powerful and efficient SEO scraping tool that scrapes data from the first page of Google search results for a list of keywords. It is built using Python, Selenium, and PySimpleGUI, and allows you to customize proxy settings and user agent to ensure a smooth scraping experience.
 
