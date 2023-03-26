@@ -1,5 +1,7 @@
 # SEO-1st-page-Google-data-scrape
 
+[alt text](https://github.com/andreireporter13/SEO-1st-page-Google-data-scrape/blob/SEO-1st-page-Google-data-scrape/GUI_for_App/img/App-photo.png)
+
 This project is a powerful and efficient SEO scraping tool that scrapes data from the first page of Google search results for a list of keywords. It is built using Python, Selenium, and PySimpleGUI, and allows you to customize proxy settings and user agent to ensure a smooth scraping experience.
 
 The scraped data includes the website's URL, H1, H2, and H3 tags, meta content, and meta description. The data is then saved in a CSV file for further analysis and processing.
