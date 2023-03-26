@@ -59,7 +59,7 @@ def main():
     This func() store all function about this project.
     """
     
-    window = sg.Window("Free scraping SEO app", layout, size=(1150, 600))
+    window = sg.Window("Free SEO analyse app", layout, size=(1150, 600))
 
     ########################### DEFAULT VALUES #########################################
     default_proxy = 'localhost:80'
@@ -90,7 +90,7 @@ def main():
                     [sg.HorizontalSeparator()],
                     [sg.Text('Cod saved on:', font=('Arial', 12)), sg.Text('Github.com', font=('Arial', 12))],
                     [sg.Text('License:', font=('Arial', 12)), sg.Text('MIT', font=('Arial', 12))],
-                    [sg.Text('Doc_link:', font=('Arial', 12)), sg.Text('Here', font=('Arial', 12))],
+                    [sg.Text('Doc_link:', font=('Arial', 12)), sg.Text('https://github.com/andreireporter13/SEO-1st-page-Google-data-scrape', font=('Arial', 12))],
                     [sg.HorizontalSeparator()],
                     [sg.Button('OK', size=(10, 1), pad=((200, 0), (20, 20)))]]
 
